@@ -1,0 +1,21 @@
+generated: 2026-07-21
+method: searched
+source: >-
+  https://trueandco.com/.well-known/openid-configuration (scopes_supported),
+  fetched live 2026-07-21
+provider: Shopify Customer Account (OAuth 2.0 / OIDC)
+issuer: https://shopify.com/authentication/86218834196
+docs: https://shopify.dev/docs/api/customer
+flows:
+- authorization_code (PKCE, S256)
+- refresh_token
+- urn:ietf:params:oauth:grant-type:jwt-bearer
+scopes:
+- name: openid
+  description: OpenID Connect authentication; issues an ID token for the customer.
+- name: email
+  description: Access to the customer's verified email address claim.
+- name: customer-account-api:full
+  description: Full access to the Shopify Customer Account API on behalf of the signed-in buyer.
+- name: customer-account-mcp-api:full
+  description: Full access to the Customer Account MCP API for agent-driven access to the buyer's account.

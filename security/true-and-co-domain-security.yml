@@ -1,0 +1,45 @@
+generated: 2026-07-21
+method: probed
+source: live TLS handshake, HTTP response headers, and DNS lookups on 2026-07-21
+domain: trueandco.com
+tls:
+  present: true
+  issuer: "Let's Encrypt (CN=YE2)"
+  not_before: '2026-06-09'
+  not_after: '2026-09-07'
+hsts:
+  present: true
+  header: max-age=7889238
+  max_age: 7889238
+  include_subdomains: false
+  preload: false
+csp:
+  present: true
+  header: "block-all-mixed-content; frame-ancestors 'none'; upgrade-insecure-requests;"
+spf:
+  present: true
+  record: "v=spf1 include:spf-00778a01.pphosted.com include:mail.zendesk.com ~all"
+dmarc:
+  present: true
+  policy: none
+  record: "v=DMARC1; p=none; rua=mailto:dmarc_agg@pvh.com; ruf=mailto:dmarc_afrf@pvh.com; fo=1"
+caa:
+  present: true
+  records:
+  - '0 issue "digicert.com"'
+  - '0 issue "globalsign.com"'
+  - '0 issue "godaddy.com"'
+  - '0 issue "letsencrypt.org"'
+  - '0 iodef "globalnetworkservices@pvh.com"'
+dnssec:
+  present: false
+  note: No DS record published at the parent zone.
+mx:
+  present: true
+  records:
+  - mxb-00778a01.gslb.pphosted.com (Proofpoint)
+  - mxa-00778a01.gslb.pphosted.com (Proofpoint)
+notes: >-
+  Storefront served via Cloudflare on Shopify infrastructure. DMARC aggregation and
+  CAA iodef contacts resolve to pvh.com, consistent with True & Co operating under
+  PVH Corp. Corporate mail is routed through Proofpoint.

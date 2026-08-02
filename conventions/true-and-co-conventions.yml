@@ -1,0 +1,62 @@
+generated: 2026-07-21
+method: searched
+source: >-
+  https://trueandco.com/llms.txt, /agents.md, /robots.txt, and /.well-known/ucp
+  (fetched live 2026-07-21)
+summary: >-
+  Cross-cutting conventions for agent interaction with the True & Co Shopify
+  storefront over the Universal Commerce Protocol (UCP) and its read-only
+  storefront JSON surface.
+auth_style: >-
+  Buyer identity via Shopify Customer Account OAuth 2.0 / OIDC; UCP/MCP discovery
+  additionally requires an agent profile URI.
+agent_commerce:
+  protocol: Universal Commerce Protocol (UCP)
+  discovery: GET https://trueandco.com/.well-known/ucp
+  mcp_endpoint: POST https://trueandco.com/api/ucp/mcp
+  transport: mcp (streamable-http) and an embedded transport
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  flow:
+  - Discover — GET /.well-known/ucp to confirm capabilities
+  - Search — search_catalog to find products
+  - Cart — create_cart to add items
+  - Checkout — create_checkout to start purchase
+  - Fulfill — update_checkout to set shipping address/method
+  - Complete — complete_checkout (buyer must approve payment)
+buyer_approval:
+  required: true
+  rule: >-
+    Checkout, payment, and order placement must NOT be completed automatically.
+    A contemporaneous, explicit human approval step is required at the moment of
+    payment. Agents that cannot obtain approval should route via the Shop skill
+    (https://shop.app/SKILL.md) over Shop Pay.
+rate_limiting:
+  signaled_via: HTTP 429
+  guidance: Back off on 429 responses; the MCP endpoint is rate-limited per IP.
+buyer_context:
+  parameters:
+  - context.address_country
+  - context.currency
+  note: Pass buyer context for accurate pricing and availability.
+read_only_surface:
+  auth_required: false
+  endpoints:
+  - "GET /collections/all — browse all products"
+  - "GET /products/{handle} — product page"
+  - "GET /products/{handle}.json — product JSON"
+  - "GET /collections/{handle} — collection page"
+  - "GET /collections/{handle}/products.json — collection product JSON"
+  - "GET /search?q={query}&type=product — product search"
+  - "GET /sitemap.xml — store sitemap"
+versioning: >-
+  UCP protocol versions are date-stamped (YYYY-MM-DD); the store advertises the
+  latest stable plus one prior version via supported_versions.
+policies:
+  privacy: https://trueandco.com/policies/privacy-policy
+  terms: https://trueandco.com/policies/terms-of-service
+cross_links:
+  authentication: ../authentication/true-and-co-authentication.yml
+  scopes: ../scopes/true-and-co-scopes.yml
+  mcp: ../mcp/true-and-co-mcp.yml

@@ -1,0 +1,39 @@
+generated: 2026-07-21
+method: searched
+source: live fetch of https://trueandco.com/.well-known/* on 2026-07-21
+host: https://trueandco.com
+notes: >-
+  True & Co is a Shopify-hosted storefront. Shopify serves live Customer Account
+  OAuth/OIDC discovery documents and a Universal Commerce Protocol (UCP) merchant
+  profile from the store domain. Raw 200 responses are saved verbatim alongside
+  this index.
+endpoints:
+- path: /.well-known/security.txt
+  status: 404
+  file: null
+- path: /.well-known/openid-configuration
+  status: 200
+  file: true-and-co-openid-configuration.json
+  type: OpenIDConfiguration
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: true-and-co-oauth-authorization-server.json
+  type: OAuthAuthorizationServer
+- path: /.well-known/ucp
+  status: 200
+  file: true-and-co-ucp.json
+  type: UCPMerchantProfile
+- path: /.well-known/api-catalog
+  status: 404
+  file: null
+- path: /.well-known/ai-plugin.json
+  status: 404
+  file: null
+- path: /llms.txt
+  status: 200
+  file: ../llms/true-and-co-llms.txt
+  type: LLMsTxt
+- path: /agents.md
+  status: 200
+  file: null
+  type: AgentInstructions

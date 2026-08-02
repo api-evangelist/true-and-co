@@ -1,0 +1,66 @@
+generated: 2026-07-21
+method: searched
+source: >-
+  https://trueandco.com/.well-known/ucp and https://trueandco.com/llms.txt
+  (fetched live 2026-07-21)
+name: True & Co UCP Shopping MCP
+status: hosted
+transport: streamable-http
+endpoint: https://trueandco.com/api/ucp/mcp
+canonical_endpoint: https://3c4af5-2.myshopify.com/api/ucp/mcp
+protocol: Universal Commerce Protocol (UCP)
+protocol_url: https://ucp.dev
+supported_versions:
+- '2026-04-08'
+- '2026-01-23'
+auth:
+  note: >-
+    The MCP endpoint requires an agent profile URI for discovery; an unauthenticated
+    tools/list returns error -32001 "UCP discovery failed / Missing profile uri".
+    Buyer identity uses Shopify Customer Account OAuth (see authentication/ and scopes/).
+  checkout_requires_human_approval: true
+  rate_limited: true
+description: >-
+  Shopify-native, hosted Model Context Protocol server exposing True & Co's catalog,
+  cart, and checkout to shopping agents via the Universal Commerce Protocol. Payment
+  completion always requires contemporaneous human buyer approval.
+# Tools/capabilities are DERIVED from the published UCP capability manifest and the
+# store's llms.txt agent flow (tools/list is gated behind an agent profile URI).
+tools:
+- name: search_catalog
+  capability: dev.ucp.shopping.catalog.search
+  summary: Find products matching a buyer's intent across the store catalog.
+  status: candidate
+- name: catalog_lookup
+  capability: dev.ucp.shopping.catalog.lookup
+  summary: Look up specific products/variants by identifier.
+  status: candidate
+- name: create_cart
+  capability: dev.ucp.shopping.cart
+  summary: Create a cart and add desired items.
+  status: candidate
+- name: create_checkout
+  capability: dev.ucp.shopping.checkout
+  summary: Start the purchase flow for a cart.
+  status: candidate
+- name: update_checkout
+  capability: dev.ucp.shopping.fulfillment
+  summary: Set shipping address and fulfillment method on a checkout.
+  status: candidate
+- name: complete_checkout
+  capability: dev.ucp.shopping.checkout
+  summary: Finalize the purchase; buyer must approve payment.
+  status: candidate
+capabilities:
+- dev.ucp.shopping.catalog.search
+- dev.ucp.shopping.catalog.lookup
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.order
+- dev.shopify.catalog
+payment_handlers:
+- com.google.pay
+- dev.shopify.card
+- dev.shopify.shop_pay
