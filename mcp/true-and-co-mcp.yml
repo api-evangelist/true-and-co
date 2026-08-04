@@ -4,7 +4,8 @@ source: >-
   https://trueandco.com/.well-known/ucp and https://trueandco.com/llms.txt
   (fetched live 2026-07-21)
 name: True & Co UCP Shopping MCP
-status: hosted
+status: published
+status_raw: hosted
 transport: streamable-http
 endpoint: https://trueandco.com/api/ucp/mcp
 canonical_endpoint: https://3c4af5-2.myshopify.com/api/ucp/mcp
