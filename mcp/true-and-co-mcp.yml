@@ -1,8 +1,6 @@
 generated: 2026-07-21
 method: searched
-source: >-
-  https://trueandco.com/.well-known/ucp and https://trueandco.com/llms.txt
-  (fetched live 2026-07-21)
+source: https://trueandco.com/.well-known/ucp and https://trueandco.com/llms.txt (fetched live 2026-07-21)
 name: True & Co UCP Shopping MCP
 status: published
 status_raw: hosted
@@ -15,18 +13,14 @@ supported_versions:
 - '2026-04-08'
 - '2026-01-23'
 auth:
-  note: >-
-    The MCP endpoint requires an agent profile URI for discovery; an unauthenticated
-    tools/list returns error -32001 "UCP discovery failed / Missing profile uri".
-    Buyer identity uses Shopify Customer Account OAuth (see authentication/ and scopes/).
+  note: The MCP endpoint requires an agent profile URI for discovery; an unauthenticated tools/list returns
+    error -32001 "UCP discovery failed / Missing profile uri". Buyer identity uses Shopify Customer Account
+    OAuth (see authentication/ and scopes/).
   checkout_requires_human_approval: true
   rate_limited: true
-description: >-
-  Shopify-native, hosted Model Context Protocol server exposing True & Co's catalog,
-  cart, and checkout to shopping agents via the Universal Commerce Protocol. Payment
-  completion always requires contemporaneous human buyer approval.
-# Tools/capabilities are DERIVED from the published UCP capability manifest and the
-# store's llms.txt agent flow (tools/list is gated behind an agent profile URI).
+description: Shopify-native, hosted Model Context Protocol server exposing True & Co's catalog, cart,
+  and checkout to shopping agents via the Universal Commerce Protocol. Payment completion always requires
+  contemporaneous human buyer approval.
 tools:
 - name: search_catalog
   capability: dev.ucp.shopping.catalog.search
@@ -65,3 +59,9 @@ payment_handlers:
 - com.google.pay
 - dev.shopify.card
 - dev.shopify.shop_pay
+deployment:
+  mode: remote
+  verified: searched
+  tools: 6
+  checked: '2026-08-12'
+  source: catalog MCP census
