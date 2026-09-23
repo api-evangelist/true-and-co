@@ -2,11 +2,9 @@ generated: 2026-07-21
 method: searched
 source: live fetch of https://trueandco.com/.well-known/* on 2026-07-21
 host: https://trueandco.com
-notes: >-
-  True & Co is a Shopify-hosted storefront. Shopify serves live Customer Account
-  OAuth/OIDC discovery documents and a Universal Commerce Protocol (UCP) merchant
-  profile from the store domain. Raw 200 responses are saved verbatim alongside
-  this index.
+notes: True & Co is a Shopify-hosted storefront. Shopify serves live Customer Account OAuth/OIDC discovery
+  documents and a Universal Commerce Protocol (UCP) merchant profile from the store domain. Raw 200 responses
+  are saved verbatim alongside this index.
 endpoints:
 - path: /.well-known/security.txt
   status: 404
@@ -37,3 +35,25 @@ endpoints:
   status: 200
   file: null
   type: AgentInstructions
+hosts:
+- host: https://trueandco.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: true-and-co-openid-configuration.json
+    type: OpenIDConfiguration
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: true-and-co-oauth-authorization-server.json
+    type: OAuthAuthorizationServer
+  - path: /.well-known/ucp
+    status: 200
+    file: true-and-co-ucp.json
+    type: UCPMerchantProfile
+x-shape-fix:
+  converted: '2026-08-20'
+  from: endpoints
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent. Promoted ONLY the 2xx rows out of
+    the probe log; non-2xx probes are real negative results and were left in place, not converted into
+    documents.
