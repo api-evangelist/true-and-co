@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/true-and-co/integrations
+- https://zapier.com/apps/true-co/integrations
+- https://n8n.io/integrations/true-and-co/
+- https://composio.dev/toolkits/true-and-co
+- https://monid.ai/tools/true-and-co
+checked:
+- https://composio.dev/toolkits/true-and-co
+- https://monid.ai/tools/true-and-co
+- https://n8n.io/integrations/true-and-co/
+- https://zapier.com/apps/true-and-co/integrations
+- https://zapier.com/apps/true-co/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
